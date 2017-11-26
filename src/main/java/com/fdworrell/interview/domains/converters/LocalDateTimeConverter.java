@@ -1,4 +1,4 @@
-package com.fdworrell.interview.converters;
+package com.fdworrell.interview.domains.converters;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

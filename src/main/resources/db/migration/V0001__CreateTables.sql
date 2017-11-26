@@ -16,7 +16,7 @@ CREATE TABLE user_profiles (
 CREATE TABLE messages (
     message_id      BIGINT UNSIGNED AUTO_INCREMENT  PRIMARY KEY,
     sender          VARCHAR(20),
-    time_sent       DATE,
+    time_sent       DATETIME,
     message_text    VARCHAR(255));
 
 CREATE TABLE message_recipients (
