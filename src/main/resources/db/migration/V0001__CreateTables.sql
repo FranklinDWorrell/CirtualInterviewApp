@@ -24,4 +24,4 @@ CREATE TABLE message_recipients (
     message_id      BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
     recipient       VARCHAR(20) NOT NULL,
     FOREIGN KEY (message_id) REFERENCES messages(message_id),
-    FOREIGN KEY (recipient) REFERENCES users(username));
+    FOREIGN KEY (recipient) REFERENCES users(user_name));
