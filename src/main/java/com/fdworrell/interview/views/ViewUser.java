@@ -1,16 +1,7 @@
-package com.fdworrell.interview.domains;
+package com.fdworrell.interview.views;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class ViewUser {
 
-@Entity
-@Table(name = "users")
-public class User {
-
-    @Id
-    @Column(name = "user_name")
     private String userName;
 
     public String getUserName() {
@@ -26,9 +17,9 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        ViewUser viewUser = (ViewUser) o;
 
-        return userName.equals(user.userName);
+        return userName.equals(viewUser.userName);
     }
 
     @Override
@@ -38,8 +29,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "ViewUser{" +
                 "userName='" + userName + '\'' +
                 '}';
     }
+
 }

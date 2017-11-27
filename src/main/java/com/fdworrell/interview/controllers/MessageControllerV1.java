@@ -6,6 +6,7 @@ import com.fdworrell.interview.domains.Message;
 import com.fdworrell.interview.managers.IMessageManager;
 import com.fdworrell.interview.views.ViewMessage;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,7 @@ public class MessageControllerV1 {
     @Autowired
     private IDateLongConverter dateLongConverter;
 
+    @ApiOperation(value = "Sends a message to the users specified in the message body")
     @RequestMapping(method = RequestMethod.POST)
     ViewMessage send(@RequestBody ViewMessage viewMessage) {
         Message message = messageConverter.viewToDomain(viewMessage);
@@ -38,6 +40,7 @@ public class MessageControllerV1 {
         return messageConverter.domainToView(response);
     }
 
+    @ApiOperation("Gets all messages for a user since a given date")
     @RequestMapping(value = "/{recipient}/{since}", method = RequestMethod.GET)
     List<ViewMessage> receive(@PathVariable String recipient, @PathVariable Long since) {
         LocalDateTime localDateTime = dateLongConverter.convertLongToLocalDateTime(since);
