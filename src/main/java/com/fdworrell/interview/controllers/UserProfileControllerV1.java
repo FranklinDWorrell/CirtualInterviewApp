@@ -20,6 +20,9 @@ public class UserProfileControllerV1 {
     @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
     ViewUserProfile getUserProfileByUserName(@PathVariable String userName) {
         UserProfile profile = userProfileManager.getUserProfileByUserName(userName);
+        if (profile == null) {
+            return null;
+        }
         return userProfileConverter.domainToView(profile);
     }
 

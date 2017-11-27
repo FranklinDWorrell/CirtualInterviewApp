@@ -1,0 +1,223 @@
+{
+	"info": {
+		"name": "ChatServer",
+		"_postman_id": "593e74eb-565b-2b80-31ac-be25d663d4c7",
+		"description": "Tests the endpoints for RESTful chat server coding challenge. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/Sophia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"Sophia"
+					]
+				},
+				"description": "Tests searching for a user by user name. "
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				},
+				"description": "Tests retrieving a complete list of user names for the chat server application. "
+			},
+			"response": []
+		},
+		{
+			"name": "Get Messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/message/YouAreTheEggMan/1482364800000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"message",
+						"YouAreTheEggMan",
+						"1482364800000"
+					]
+				},
+				"description": "Tests the get messages endpoint for the chat server. "
+			},
+			"response": []
+		},
+		{
+			"name": "Send Message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"sender\": \"IAmTheWalrus\",\n        \"messageText\": \"Test Message 1\",\n        \"recipients\": [\"YouAreTheEggMan\", \"Dorothy\", \"Rose\"]\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"message"
+					]
+				},
+				"description": "Tests the send message endpoint for the RESTful chat server. "
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/userProfile/IAmTheWalrus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"userProfile",
+						"IAmTheWalrus"
+					]
+				},
+				"description": "Tests the endpoint for GETting a user's profile. Demonstrates that searching by user name will succeed. "
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"IAmTheWalrus\",\n    \"firstName\": \"Jack\",\n    \"lastName\": \"Jackson\",\n    \"gender\": \"m\",\n    \"birthday\": 720943200000,\n    \"city\": \"Montgomery\",\n    \"state\": \"AL\",\n    \"country\": \"US\",\n    \"quote\": \"I am a banana!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/userProfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"userProfile"
+					]
+				},
+				"description": "Tests the endpoint allowing a user to update her/his user profile. "
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Profile",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/userProfile/IAmTheWalrus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"userProfile",
+						"IAmTheWalrus"
+					]
+				},
+				"description": "Allows a user to delete their profile from the chat server. "
+			},
+			"response": []
+		},
+		{
+			"name": "Create User Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"IAmTheWalrus\",\n    \"firstName\": \"Jack\",\n    \"lastName\": \"Jackson\",\n    \"gender\": \"m\",\n    \"birthday\": 720943200000,\n    \"city\": \"Montgomery\",\n    \"state\": \"AL\",\n    \"country\": \"US\",\n    \"quote\": \"This profile has been recreated!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/userProfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"userProfile"
+					]
+				},
+				"description": "Tests the endpoint allowing a current user to create a user profile from scratch. "
+			},
+			"response": []
+		}
+	]
+}
