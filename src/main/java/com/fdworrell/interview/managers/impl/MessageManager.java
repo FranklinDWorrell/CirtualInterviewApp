@@ -22,9 +22,16 @@ public class MessageManager implements IMessageManager {
     private IMessageRecipientRepository messageRecipientRepository;
 
     @Override
-    public Message send(Message message, List<MessageRecipient> recipients) {
-        messageRecipientRepository.save(recipients);
-        return messageRepository.save(message);
+    public Message send(Message message, List<String> recipients) {
+        Message saved = messageRepository.save(message);
+        Long messageId = saved.getMessageId();
+        for (String recipient : recipients) {
+            MessageRecipient msgRecip = new MessageRecipient();
+            msgRecip.setMessageId(messageId);
+            msgRecip.setRecipient(recipient);
+            messageRecipientRepository.save(msgRecip);
+        }
+        return saved;
     }
 
     @Override

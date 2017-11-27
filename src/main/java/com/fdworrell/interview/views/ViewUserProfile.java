@@ -1,41 +1,23 @@
-package com.fdworrell.interview.domains;
+package com.fdworrell.interview.views;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
+public class ViewUserProfile {
 
-@Entity
-@Table(name = "user_profiles")
-public class UserProfile {
-
-    @Id
-    @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "gender")
     private char gender;
 
-    @Column(name = "birthday")
-    private LocalDateTime birthday;
+    private Long birthday;
 
-    @Column(name = "city")
     private String city;
 
-    @Column(name = "state")
     private String state;
 
-    @Column(name = "country")
     private String country;
 
-    @Column(name = "quote")
     private String quote;
 
     public String getUserName() {
@@ -70,11 +52,11 @@ public class UserProfile {
         this.gender = gender;
     }
 
-    public LocalDateTime getBirthday() {
+    public Long getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDateTime birthday) {
+    public void setBirthday(Long birthday) {
         this.birthday = birthday;
     }
 
@@ -115,7 +97,7 @@ public class UserProfile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserProfile that = (UserProfile) o;
+        ViewUserProfile that = (ViewUserProfile) o;
 
         if (gender != that.gender) return false;
         if (!userName.equals(that.userName)) return false;
@@ -144,7 +126,7 @@ public class UserProfile {
 
     @Override
     public String toString() {
-        return "UserProfile{" +
+        return "ViewUserProfile{" +
                 "userName='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

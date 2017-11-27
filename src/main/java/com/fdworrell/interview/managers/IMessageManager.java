@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IMessageManager {
 
-    Message send(Message message, List<MessageRecipient> recipients);
+    Message send(Message message, List<String> recipients);
 
     List<Message> receive(String recipient, LocalDateTime timeSent);
 

@@ -1,10 +1,10 @@
 package com.fdworrell.interview.controllers;
 
+import com.fdworrell.interview.converters.IUserProfileConverter;
 import com.fdworrell.interview.domains.UserProfile;
 import com.fdworrell.interview.managers.IUserProfileManager;
+import com.fdworrell.interview.views.ViewUserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,28 +14,33 @@ public class UserProfileControllerV1 {
     @Autowired
     private IUserProfileManager userProfileManager;
 
+    @Autowired
+    private IUserProfileConverter userProfileConverter;
+
     @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
-    UserProfile getUserProfileByUserName(@PathVariable String userName) {
-        return userProfileManager.getUserProfileByUserName(userName);
+    ViewUserProfile getUserProfileByUserName(@PathVariable String userName) {
+        UserProfile profile = userProfileManager.getUserProfileByUserName(userName);
+        return userProfileConverter.domainToView(profile);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    ResponseEntity<UserProfile> createUserProfile(@RequestBody UserProfile userProfile) {
+    ViewUserProfile createUserProfile(@RequestBody ViewUserProfile viewUserProfile) {
+        UserProfile userProfile = userProfileConverter.viewToDomain(viewUserProfile);
         UserProfile profile = userProfileManager.createUserProfile(userProfile);
-        return new ResponseEntity<UserProfile>(profile, HttpStatus.CREATED);
+        return userProfileConverter.domainToView(profile);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    ResponseEntity<UserProfile> updateUserProfile(@RequestBody UserProfile userProfile) {
+    ViewUserProfile updateUserProfile(@RequestBody ViewUserProfile viewUserProfile) {
+        UserProfile userProfile = userProfileConverter.viewToDomain(viewUserProfile);
         UserProfile profile = userProfileManager.updateUserProfile(userProfile.getUserName(), userProfile);
-        if (profile == null) {
-            return new ResponseEntity<UserProfile>(profile, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<UserProfile>(profile, HttpStatus.OK);
+        return userProfileConverter.domainToView(profile);
     }
 
     @RequestMapping(value = "/{userName}", method = RequestMethod.DELETE)
-    UserProfile deleteUserProfileByUserName(@PathVariable String userName) {
-        return userProfileManager.deleteUserProfile(userName);
+    ViewUserProfile deleteUserProfileByUserName(@PathVariable String userName) {
+        UserProfile profile = userProfileManager.deleteUserProfile(userName);
+        return userProfileConverter.domainToView(profile);
     }
+
 }
