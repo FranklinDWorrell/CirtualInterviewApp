@@ -8,6 +8,7 @@ import com.fdworrell.interview.views.ViewUser;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class UserControllerV1 {
 
     @ApiOperation(value = "Creates a new user")
     @RequestMapping(method = RequestMethod.POST)
-    ViewUser register(ViewUser viewUser) {
+    ViewUser register(@RequestBody ViewUser viewUser) {
         User user = userConverter.viewToDomain(viewUser);
         User response = userManager.registerUser(user);
         return userConverter.domainToView(response);
