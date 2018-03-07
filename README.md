@@ -6,7 +6,7 @@ This project implements a RESTful chat server with additional support for creati
 1. From inside the top-level directory of the repository, build and run with Maven: `mvn clean install spring-boot:run`. 
 
 ## To Test 
-1. Open Postman (see https://www.getpostman.com/ to download and install) and import the Collection at `src/main/resources/...`. 
+1. Open Postman (see https://www.getpostman.com/ to download and install) and import the Collection at `src/test/resources/ChatServer.postman_collection.json`. 
 1. Send the `Register User` request in Postman. Verify that a user with userName `RickDeckard` is returned (the only field is `userName`).
 1. Send the `Get User` request. Verify that user with userName `Sophia` is returned. 
 1. Send the `Get All Users` request. Verify that a list of 7 users is returned. 
