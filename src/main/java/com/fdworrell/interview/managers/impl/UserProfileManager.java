@@ -6,6 +6,8 @@ import com.fdworrell.interview.repository.IUserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
+
 @Component
 public class UserProfileManager implements IUserProfileManager {
 
@@ -14,7 +16,7 @@ public class UserProfileManager implements IUserProfileManager {
 
     @Override
     public UserProfile getUserProfileByUserName(String userName) {
-        return userProfileRepository.findOne(userName);
+        return userProfileRepository.findById(userName).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
@@ -24,7 +26,7 @@ public class UserProfileManager implements IUserProfileManager {
 
     @Override
     public UserProfile updateUserProfile(String userName, UserProfile userProfile) {
-        UserProfile currentProfile = userProfileRepository.findOne(userName);
+        UserProfile currentProfile = userProfileRepository.findById(userName).orElse(null);
         if (currentProfile == null || userProfile.getUserName() != userName) {
             return null;
         }
@@ -33,7 +35,7 @@ public class UserProfileManager implements IUserProfileManager {
 
     @Override
     public UserProfile deleteUserProfile(String userName) {
-        UserProfile profile = userProfileRepository.findOne(userName);
+        UserProfile profile = userProfileRepository.findById(userName).orElse(null);
         if (profile == null) {
             return null;
         }
